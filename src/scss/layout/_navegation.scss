@@ -12,10 +12,15 @@
 }
 
 .navigation {
-    display: none;
+    //display: none; These is equals as visibility
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility .3s ease-in-out, opacity .5s linear;
     @include m.tablet {
         display: flex;
         align-items: center;
+        opacity: 1;
+        visibility: visible;
     }
     a {
         color: v.$white;
@@ -43,4 +48,17 @@
     img {
         width: 5rem;
     }
+}
+
+
+/* JS Logic */
+
+.show {
+    visibility: visible;
+    opacity: 1;
+    /*display: flex;
+    flex-direction: column;
+    @include m.tablet {
+        flex-direction: row;
+    }*/
 }

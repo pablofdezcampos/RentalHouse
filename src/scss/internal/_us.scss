@@ -1,8 +1,14 @@
 @use 'base/variables' as v;
 @use 'base/mixins' as m;
 .content-us {
-    @include m.grid(2, 2rem);
-    gap: 5rem;
+    @include m.tablet {
+        @include m.grid(2, 2rem);
+        gap: 5rem;
+    }
+    @include m.phone {
+        text-align: center;
+        @include m.grid(1, 2rem);
+    }
 }
 
 .text-us blockquote {

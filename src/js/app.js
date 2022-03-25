@@ -1,12 +1,14 @@
 document.addEventListener('DOMContentLoaded', function() {
-    addEventListener();
+    eventListener();
 });
 
-function addEventListener() {
+function eventListener() {
     const mobileMenu = document.querySelector('.mobile-menu');
-    mobileMenu.adddeventListener('click', responsiveNavegation);
+    mobileMenu.addEventListener('click', responsiveNavegation);
 }
 
 function responsiveNavegation() {
-
+    const navigation = document.querySelector('.navigation');
+    //Toogle add and delete
+    navigation.classList.toggle('show');
 }
