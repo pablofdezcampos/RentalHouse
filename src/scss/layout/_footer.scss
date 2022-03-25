@@ -1,0 +1,13 @@
+@use 'base/variables' as v;
+.footer {
+    background-color: v.$darkGrey;
+    padding: v.$separation / 2 0;
+    margin-bottom: 0;
+    .container-footer {
+        padding-top: calc(v.$separation / 2);
+    }
+    .copyrigth {
+        color: v.$white;
+        text-align: center;
+    }
+}

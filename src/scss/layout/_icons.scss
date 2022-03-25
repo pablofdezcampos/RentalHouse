@@ -1,0 +1,19 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+.icon {
+    text-align: center;
+    img {
+        height: 10rem;
+        width: auto;
+        margin: 0 auto;
+    }
+    h3 {
+        text-transform: uppercase;
+    }
+}
+
+@include m.tablet {
+    .icons-us {
+        @include m.grid(3, 2rem);
+    }
+}

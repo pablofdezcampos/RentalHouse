@@ -1,0 +1,27 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+.comment {
+    background-color: v.$green;
+    font-size: 1.8rem;
+    padding: 1rem;
+    color: v.$white;
+    border-radius: 3rem;
+    blockquote {
+        padding-left: 5rem;
+        position: relative; //To positioned the " in the comment
+        &::before {
+            position: absolute;
+            content: '';
+            background-image: url(../img/comilla.svg);
+            background-repeat: no-repeat;
+            width: 6rem;
+            height: 8rem;
+            display: block;
+            left: -2rem;
+        }
+    }
+    p {
+        text-align: right;
+        margin-right: 2rem;
+    }
+}

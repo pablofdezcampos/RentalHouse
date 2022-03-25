@@ -1,0 +1,46 @@
+@use 'base/mixins' as m;
+@use 'base/variables' as v;
+.bar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 2rem;
+    @include m.tablet {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+}
+
+.navigation {
+    display: none;
+    @include m.tablet {
+        display: flex;
+        align-items: center;
+    }
+    a {
+        color: v.$white;
+        text-decoration: none;
+        font-size: 2.2rem;
+        display: block; //Occupy all width
+        text-align: center;
+        @include m.tablet {
+            margin-right: 2rem;
+            font-size: 1.8rem;
+            &:last-of-type {
+                margin: 0;
+            }
+        }
+    }
+}
+
+
+/* Menu for mobile screen */
+
+.mobile-menu {
+    @include m.tablet {
+        display: none;
+    }
+    img {
+        width: 5rem;
+    }
+}
