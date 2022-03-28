@@ -1,7 +1,7 @@
 @use 'base/variables' as v;
 .footer {
     background-color: v.$darkGrey;
-    padding: v.$separation / 2 0;
+    padding: calc(v.$separation / 2);
     margin-bottom: 0;
     .container-footer {
         padding-top: calc(v.$separation / 2);

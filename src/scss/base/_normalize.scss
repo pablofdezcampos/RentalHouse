@@ -1,29 +1,317 @@
-<!DOCTYPE php><php lang="en"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Rental House</title><link rel="stylesheet" href="build/css/app.css"></head><body><header class="header start"><div class="container container-header"><div class="bar"><a href="/"><img src="build/img/logo.svg" alt="Logo of Rental House"></a><!-- Menu for mobile screen --><div class="mobile-menu"><img src="build/img/barras.svg" alt="Icon Responsive Menu"></div><div class="rigth"><img class="dark-mode-button" src="build/img/dark-mode.svg" alt="Icon of dark mode"><nav class="navigation"><a href="us.php">About Us</a><a href="adverts.php">Adverts</a><a href="blog.php">Blog</a><a href="contact.php">Contact</a></nav></div></div><h1>Sale of Houses and Exclusives Luxury Apartaments</h1></div></header><main class="container section"><h1>More About Us</h1><div class="icons-us"><div class="icon"><img src="build/img/icono1.svg" alt="Security Icon" loading="lazy"><h3>Security</h3><p>Lorem ipsum dolor,
-sit amet consectetur adipisicing elit. Nobis perspiciatis dolores tenetur facilis. Ipsam,
-perspiciatis sit. Laboriosam doloribus incidunt voluptatum natus debitis in velit consectetur officia,
-ipsa repellat. At,
-illo. </p></div><div class="icon"><img src="build/img/icono2.svg" alt="Price Icon" loading="lazy"><h3>Price</h3><p>Lorem ipsum dolor,
-sit amet consectetur adipisicing elit. Nobis perspiciatis dolores tenetur facilis. Ipsam,
-perspiciatis sit. Laboriosam doloribus incidunt voluptatum natus debitis in velit consectetur officia,
-ipsa repellat. At,
-illo. </p></div><div class="icon"><img src="build/img/icono3.svg" alt="Time Icon" loading="lazy"><h3>Time</h3><p>Lorem ipsum dolor,
-sit amet consectetur adipisicing elit. Nobis perspiciatis dolores tenetur facilis. Ipsam,
-perspiciatis sit. Laboriosam doloribus incidunt voluptatum natus debitis in velit consectetur officia,
-ipsa repellat. At,
-illo. </p></div></div></main><section class="section container"><h2>Houses and Apartaments in Sale</h2><div class="container-adverts"><div class="advert"><picture><source srcset="build/img/anuncio1.webp" type="image/webp"><source srcset="build/img/anuncio1.jpg" type="image/jpeg"><img loading="lazy" src="build/img/anuncio1.jpg" alt="Advert"></picture><div class="content-advert"><h3>Luxury House in the Lake</h3><p>House in the lake with awesome views. Excelent price.</p><p class="price">$3,
-000,
-0000</p><ul class="icons-features"><li><img class="icon" src="build/img/icono_wc.svg" alt="WC Icon"><p>3</p></li><li><img class="icon" src="build/img/icono_estacionamiento.svg" alt="WC Icon"><p>3</p></li><li><img class="icon" src="build/img/icono_dormitorio.svg" alt="WC Icon"><p>4</p></li></ul><a href="advert.php" class="button-yellow-block">Show property</a></div></div><div class="advert"><picture><source srcset="build/img/anuncio2.webp" type="image/webp"><source srcset="build/img/anuncio2.jpg" type="image/jpeg"><img loading="lazy" src="build/img/anuncio2.jpg" alt="Advert"></picture><div class="content-advert"><h3>Luxury House</h3><p>House with modern design,
-intelligent technology.</p><p class="price">$2,
-000,
-0000</p><ul class="icons-features"><li><img class="icon" src="build/img/icono_wc.svg" alt="WC Icon"><p>3</p></li><li><img class="icon" src="build/img/icono_estacionamiento.svg" alt="WC Icon"><p>3</p></li><li><img class="icon" src="build/img/icono_dormitorio.svg" alt="WC Icon"><p>4</p></li></ul><a href="advert.php" class="button-yellow-block">Show property</a></div></div><div class="advert"><picture><source srcset="build/img/anuncio3.webp" type="image/webp"><source srcset="build/img/anuncio3.jpg" type="image/jpeg"><img loading="lazy" src="build/img/anuncio3.jpg" alt="Advert"></picture><div class="content-advert"><h3>Chalet</h3><p>In the center of the city,
-excelent opportunity.</p><p class="price">$3,
-000,
-0000</p><ul class="icons-features"><li><img class="icon" src="build/img/icono_wc.svg" alt="WC Icon"><p>3</p></li><li><img class="icon" src="build/img/icono_estacionamiento.svg" alt="WC Icon"><p>3</p></li><li><img class="icon" src="build/img/icono_dormitorio.svg" alt="WC Icon"><p>4</p></li></ul><a href="advert.php" class="button-yellow-block">Show property</a></div></div></div><div class="align-rigth container"><a href="adverts.php" class="button-green">Show all</a></div></section><section class="image-contact"><h2>Find the house of your dreams</h2><p>Please,
-fill the contact form and a asesor will contact you</p><a href="contact.php" class="button-yellow-block">Contact Us</a></section><div class="container section lower-section"><section class="container blog"><h3>Our Blog</h3><article class="entry-blog"><div class="image"><picture><source srcset="build/img/blog1.webp" type="image/webp"><source srcset="build/img/blog1.jpg" type="image/jpeg"><img loading="lazy" src="build/img/blog1.jpg" alt="Entry Image Blog"></picture></div><div class="text-entry"><a href="entry.php"><h4>Terrace in your house</h4><p class="meta-information">Wrote: <span>24/01/2022</span>&nbsp by: <span>Admin</span></p></a><p>Tips for build a terrace in your house with the bests materials. </p></div></article><article class="entry-blog"><div class="image"><picture><source srcset="build/img/blog2.webp" type="image/webp"><source srcset="build/img/blog2.jpg" type="image/jpeg"><img loading="lazy" src="build/img/blog2.jpg" alt="Entry Image Blog"></picture></div><div class="text-entry"><a href="entry.php"><h4>Guide for the decoration in your house</h4><p class="meta-information">Wrote: <span>24/01/2022</span>&nbsp by: <span>Admin</span></p></a><p>Maximize the space in your house with this guide. Learn how to change colors to give space´s live. </p></div></article></section><section class="comments"><h3>Comments</h3><div class="comment"><blockquote>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis quod,
-officiis laborum cupiditate laudantium deleniti. Culpa praesentium voluptates,
-esse facere voluptate dolor aliquam,
-ut sit itaque fugit temporibus consequatur similique? </blockquote><p>- Author</p></div></section></div><footer class="footer section"><div class="container container-footer"><nav class="navigation"><a href="us.php">About Us</a><a href="adverts.php">Adverts</a><a href="blog.php">Blog</a><a href="contact.php">Contact</a></nav></div><p class="copyrigth">All rigths reserved 2022 &copy;
-</p></footer><script src="build/js/bundle.js"></script></body></php>emove the default vertical scrollbar in IE 10+. */ textarea {
+/*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
+
+
+/* Document
+   ========================================================================== */
+
+
+/**
+ * 1. Correct the line height in all browsers.
+ * 2. Prevent adjustments of font size after orientation changes in iOS.
+ */
+
+html {
+    line-height: 1.15;
+    /* 1 */
+    -webkit-text-size-adjust: 100%;
+    /* 2 */
+}
+
+
+/* Sections
+     ========================================================================== */
+
+
+/**
+   * Remove the margin in all browsers.
+   */
+
+body {
+    margin: 0;
+}
+
+
+/**
+   * Render the `main` element consistently in IE.
+   */
+
+main {
+    display: block;
+}
+
+
+/**
+   * Correct the font size and margin on `h1` elements within `section` and
+   * `article` contexts in Chrome, Firefox, and Safari.
+   */
+
+h1 {
+    font-size: 2em;
+    margin: 0.67em 0;
+}
+
+
+/* Grouping content
+     ========================================================================== */
+
+
+/**
+   * 1. Add the correct box sizing in Firefox.
+   * 2. Show the overflow in Edge and IE.
+   */
+
+hr {
+    box-sizing: content-box;
+    /* 1 */
+    height: 0;
+    /* 1 */
+    overflow: visible;
+    /* 2 */
+}
+
+
+/**
+   * 1. Correct the inheritance and scaling of font size in all browsers.
+   * 2. Correct the odd `em` font sizing in all browsers.
+   */
+
+pre {
+    font-family: monospace, monospace;
+    /* 1 */
+    font-size: 1em;
+    /* 2 */
+}
+
+
+/* Text-level semantics
+     ========================================================================== */
+
+
+/**
+   * Remove the gray background on active links in IE 10.
+   */
+
+a {
+    background-color: transparent;
+}
+
+
+/**
+   * 1. Remove the bottom border in Chrome 57-
+   * 2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.
+   */
+
+abbr[title] {
+    border-bottom: none;
+    /* 1 */
+    text-decoration: underline;
+    /* 2 */
+    text-decoration: underline dotted;
+    /* 2 */
+}
+
+
+/**
+   * Add the correct font weight in Chrome, Edge, and Safari.
+   */
+
+b,
+strong {
+    font-weight: bolder;
+}
+
+
+/**
+   * 1. Correct the inheritance and scaling of font size in all browsers.
+   * 2. Correct the odd `em` font sizing in all browsers.
+   */
+
+code,
+kbd,
+samp {
+    font-family: monospace, monospace;
+    /* 1 */
+    font-size: 1em;
+    /* 2 */
+}
+
+
+/**
+   * Add the correct font size in all browsers.
+   */
+
+small {
+    font-size: 80%;
+}
+
+
+/**
+   * Prevent `sub` and `sup` elements from affecting the line height in
+   * all browsers.
+   */
+
+sub,
+sup {
+    font-size: 75%;
+    line-height: 0;
+    position: relative;
+    vertical-align: baseline;
+}
+
+sub {
+    bottom: -0.25em;
+}
+
+sup {
+    top: -0.5em;
+}
+
+
+/* Embedded content
+     ========================================================================== */
+
+
+/**
+   * Remove the border on images inside links in IE 10.
+   */
+
+img {
+    border-style: none;
+}
+
+
+/* Forms
+     ========================================================================== */
+
+
+/**
+   * 1. Change the font styles in all browsers.
+   * 2. Remove the margin in Firefox and Safari.
+   */
+
+button,
+input,
+optgroup,
+select,
+textarea {
+    font-family: inherit;
+    /* 1 */
+    font-size: 100%;
+    /* 1 */
+    line-height: 1.15;
+    /* 1 */
+    margin: 0;
+    /* 2 */
+}
+
+
+/**
+   * Show the overflow in IE.
+   * 1. Show the overflow in Edge.
+   */
+
+button,
+input {
+    /* 1 */
+    overflow: visible;
+}
+
+
+/**
+   * Remove the inheritance of text transform in Edge, Firefox, and IE.
+   * 1. Remove the inheritance of text transform in Firefox.
+   */
+
+button,
+select {
+    /* 1 */
+    text-transform: none;
+}
+
+
+/**
+   * Correct the inability to style clickable types in iOS and Safari.
+   */
+
+button,
+[type="button"],
+[type="reset"],
+[type="submit"] {
+    -webkit-appearance: button;
+}
+
+
+/**
+   * Remove the inner border and padding in Firefox.
+   */
+
+button::-moz-focus-inner,
+[type="button"]::-moz-focus-inner,
+[type="reset"]::-moz-focus-inner,
+[type="submit"]::-moz-focus-inner {
+    border-style: none;
+    padding: 0;
+}
+
+
+/**
+   * Restore the focus styles unset by the previous rule.
+   */
+
+button:-moz-focusring,
+[type="button"]:-moz-focusring,
+[type="reset"]:-moz-focusring,
+[type="submit"]:-moz-focusring {
+    outline: 1px dotted ButtonText;
+}
+
+
+/**
+   * Correct the padding in Firefox.
+   */
+
+fieldset {
+    padding: 0.35em 0.75em 0.625em;
+}
+
+
+/**
+   * 1. Correct the text wrapping in Edge and IE.
+   * 2. Correct the color inheritance from `fieldset` elements in IE.
+   * 3. Remove the padding so developers are not caught out when they zero out
+   *    `fieldset` elements in all browsers.
+   */
+
+legend {
+    box-sizing: border-box;
+    /* 1 */
+    color: inherit;
+    /* 2 */
+    display: table;
+    /* 1 */
+    max-width: 100%;
+    /* 1 */
+    padding: 0;
+    /* 3 */
+    white-space: normal;
+    /* 1 */
+}
+
+
+/**
+   * Add the correct vertical alignment in Chrome, Firefox, and Opera.
+   */
+
+progress {
+    vertical-align: baseline;
+}
+
+
+/**
+   * Remove the default vertical scrollbar in IE 10+.
+   */
+
+textarea {
     overflow: auto;
 }
 
