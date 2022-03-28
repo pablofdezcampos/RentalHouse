@@ -32,7 +32,7 @@ function darkMode() {
         }
     });
 
-    //Login Button
+    //Dark Theme Button
     const darkModeButton = document.querySelector('.dark-mode-button');
     darkModeButton.addEventListener('click', function() {
         document.body.classList.toggle('dark-mode');
