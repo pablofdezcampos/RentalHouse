@@ -1,5 +1,27 @@
 @use 'base/mixins' as m;
 @use 'base/variables' as v;
+.rigth {
+    display: flex;
+    flex-direction: column;
+    @include m.tablet {
+        align-items: flex-end;
+    }
+    .dark-mode-button {
+        width: 3rem;
+        margin-left: 3rem;
+        margin-top: 3rem;
+        margin-bottom: 3rem;
+        filter: invert(100%);
+        &:hover {
+            cursor: pointer;
+        }
+        @include m.tablet {
+            margin-top: 0;
+            margin-left: 0;
+        }
+    }
+}
+
 .bar {
     display: flex;
     flex-direction: column;
@@ -8,6 +30,8 @@
     @include m.tablet {
         flex-direction: row;
         justify-content: space-between;
+        //To center the logo with the nav with the dark button
+        align-items: flex-end;
     }
 }
 

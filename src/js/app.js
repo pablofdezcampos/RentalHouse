@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     eventListener();
+    darkMode();
 });
 
 function eventListener() {
@@ -11,4 +12,11 @@ function responsiveNavegation() {
     const navigation = document.querySelector('.navigation');
     //Toogle add and delete
     navigation.classList.toggle('show');
+}
+
+function darkMode() {
+    const darkModeButton = document.querySelector('.dark-mode-button');
+    darkModeButton.addEventListener('click', function() {
+        document.body.classList.toggle('dark-mode');
+    });
 }

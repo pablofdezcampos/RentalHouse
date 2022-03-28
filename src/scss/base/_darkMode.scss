@@ -1,0 +1,26 @@
+@use 'base/variables' as v;
+.dark-mode {
+    background-color: darken(v.$darkGrey, 10);
+    p {
+        color: v.$white;
+    }
+    h1,
+    h2,
+    h3,
+    h4,
+    a {
+        color: v.$grey;
+    }
+    .advert {
+        background-color: v.$darkGrey;
+        border: 1px solid v.$darkGrey;
+        .price {
+            color: v.$green;
+        }
+        //Inside .advert to only change color of the icon of the adverts.
+        //General icons have the class .icon too.
+        .icon {
+            filter: invert(100%);
+        }
+    }
+}
