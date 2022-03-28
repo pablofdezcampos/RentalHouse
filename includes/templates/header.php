@@ -11,7 +11,7 @@
 
 <body>
 
-    <header class="header <?php echo isset($start)  ? 'start' : ''; ?>">
+    <header class="header <?php echo $start  ? 'start' : ''; ?>">
         <div class="container container-header">
             <div class="bar">
                 <a href="/">

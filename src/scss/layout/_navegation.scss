@@ -40,7 +40,7 @@
     height: 0;
     visibility: hidden;
     opacity: 0;
-    transition: visibility .3s ease-in-out, opacity .5s linear, height .5s linear;
+    transition: visibility .3s ease-in-out, opacity .5s linear, height 1.5s linear;
     @include m.tablet {
         display: flex;
         align-items: center;

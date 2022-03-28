@@ -1,6 +1,7 @@
 <?php
-$start = true;
-include 'includes/templates/header.php'; ?>
+require 'includes/functions.php';
+addTemplate('header', $start = true);
+?>
 
 <main class="container section">
     <h1>More About Us</h1>
