@@ -1,5 +1,9 @@
+<<<<<<< HEAD
 <?php include 'includes/templates/header.php' ?>
 
+=======
+<?php include 'includes/templates/header.php'; ?>
+>>>>>>> c9492fe78c19495f2903fa013a10db3fa89b0b16
 
 <main class="container section">
     <h2>Houses and Apartaments in Sale</h2>
@@ -32,7 +36,11 @@
                     </li>
                 </ul>
 
+<<<<<<< HEAD
                 <a href="advert.html" class="button-yellow-block">Show property</a>
+=======
+                <a href="advert.php" class="button-yellow-block">Show property</a>
+>>>>>>> c9492fe78c19495f2903fa013a10db3fa89b0b16
             </div>
         </div>
 
@@ -63,7 +71,11 @@
                     </li>
                 </ul>
 
+<<<<<<< HEAD
                 <a href="advert.html" class="button-yellow-block">Show property</a>
+=======
+                <a href="advert.php" class="button-yellow-block">Show property</a>
+>>>>>>> c9492fe78c19495f2903fa013a10db3fa89b0b16
             </div>
         </div>
 
@@ -94,7 +106,11 @@
                     </li>
                 </ul>
 
+<<<<<<< HEAD
                 <a href="advert.html" class="button-yellow-block">Show property</a>
+=======
+                <a href="advert.php" class="button-yellow-block">Show property</a>
+>>>>>>> c9492fe78c19495f2903fa013a10db3fa89b0b16
             </div>
         </div>
 
@@ -104,10 +120,17 @@
 <footer class="footer section">
     <div class="container container-footer">
         <nav class="navigation">
+<<<<<<< HEAD
             <a href="us.html">About Us</a>
             <a href="adverts.html">Adverts</a>
             <a href="blog.html">Blog</a>
             <a href="contact.html">Contact</a>
+=======
+            <a href="us.php">About Us</a>
+            <a href="adverts.php">Adverts</a>
+            <a href="blog.php">Blog</a>
+            <a href="contact.php">Contact</a>
+>>>>>>> c9492fe78c19495f2903fa013a10db3fa89b0b16
         </nav>
     </div>
     <p class="copyrigth">All rigths reserved 2022 &copy;</p>
@@ -116,4 +139,8 @@
 <script src="build/js/bundle.js"></script>
 </body>
 
+<<<<<<< HEAD
 </html>
+=======
+</php>
+>>>>>>> c9492fe78c19495f2903fa013a10db3fa89b0b16

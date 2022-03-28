@@ -1,5 +1,11 @@
+<<<<<<< HEAD
 <?php include 'includes/templates/header.php' ?>
 
+=======
+<?php
+$start = true;
+include 'includes/templates/header.php'; ?>
+>>>>>>> c9492fe78c19495f2903fa013a10db3fa89b0b16
 
 <main class="container section">
     <h1>More About Us</h1>
@@ -65,7 +71,11 @@
                     </li>
                 </ul>
 
+<<<<<<< HEAD
                 <a href="advert.html" class="button-yellow-block">Show property</a>
+=======
+                <a href="advert.php" class="button-yellow-block">Show property</a>
+>>>>>>> c9492fe78c19495f2903fa013a10db3fa89b0b16
             </div>
         </div>
 
@@ -96,7 +106,11 @@
                     </li>
                 </ul>
 
+<<<<<<< HEAD
                 <a href="advert.html" class="button-yellow-block">Show property</a>
+=======
+                <a href="advert.php" class="button-yellow-block">Show property</a>
+>>>>>>> c9492fe78c19495f2903fa013a10db3fa89b0b16
             </div>
         </div>
 
@@ -127,21 +141,33 @@
                     </li>
                 </ul>
 
+<<<<<<< HEAD
                 <a href="advert.html" class="button-yellow-block">Show property</a>
+=======
+                <a href="advert.php" class="button-yellow-block">Show property</a>
+>>>>>>> c9492fe78c19495f2903fa013a10db3fa89b0b16
             </div>
         </div>
 
     </div>
 
     <div class="align-rigth container">
+<<<<<<< HEAD
         <a href="adverts.html" class="button-green">Show all</a>
+=======
+        <a href="adverts.php" class="button-green">Show all</a>
+>>>>>>> c9492fe78c19495f2903fa013a10db3fa89b0b16
     </div>
 </section>
 
 <section class="image-contact">
     <h2>Find the house of your dreams</h2>
     <p>Please, fill the contact form and a asesor will contact you</p>
+<<<<<<< HEAD
     <a href="contact.html" class="button-yellow-block">Contact Us</a>
+=======
+    <a href="contact.php" class="button-yellow-block">Contact Us</a>
+>>>>>>> c9492fe78c19495f2903fa013a10db3fa89b0b16
 </section>
 
 <div class="container section lower-section">
@@ -158,7 +184,11 @@
             </div>
 
             <div class="text-entry">
+<<<<<<< HEAD
                 <a href="entry.html">
+=======
+                <a href="entry.php">
+>>>>>>> c9492fe78c19495f2903fa013a10db3fa89b0b16
                     <h4>Terrace in your house</h4>
                     <p class="meta-information">Wrote: <span>24/01/2022</span> &nbsp by: <span>Admin</span></p>
                 </a>
@@ -179,7 +209,11 @@
             </div>
 
             <div class="text-entry">
+<<<<<<< HEAD
                 <a href="entry.html">
+=======
+                <a href="entry.php">
+>>>>>>> c9492fe78c19495f2903fa013a10db3fa89b0b16
                     <h4>Guide for the decoration in your house</h4>
                     <p class="meta-information">Wrote: <span>24/01/2022</span> &nbsp by: <span>Admin</span></p>
                 </a>
@@ -207,10 +241,17 @@
 <footer class="footer section">
     <div class="container container-footer">
         <nav class="navigation">
+<<<<<<< HEAD
             <a href="us.html">About Us</a>
             <a href="adverts.html">Adverts</a>
             <a href="blog.html">Blog</a>
             <a href="contact.html">Contact</a>
+=======
+            <a href="us.php">About Us</a>
+            <a href="adverts.php">Adverts</a>
+            <a href="blog.php">Blog</a>
+            <a href="contact.php">Contact</a>
+>>>>>>> c9492fe78c19495f2903fa013a10db3fa89b0b16
         </nav>
     </div>
     <p class="copyrigth">All rigths reserved 2022 &copy;</p>
@@ -219,4 +260,8 @@
 <script src="build/js/bundle.js"></script>
 </body>
 
+<<<<<<< HEAD
 </html>
+=======
+</php>
+>>>>>>> c9492fe78c19495f2903fa013a10db3fa89b0b16
