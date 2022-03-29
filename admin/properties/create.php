@@ -76,24 +76,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         /* Upload files */
 
         //Create folder
-        $folder = '../../img';
+        $folder = '../../img/';
 
         if (!is_dir($folder)) {
             mkdir($folder);
         }
 
-        //Upload file
-        move_uploaded_file($image['tmp_name'], $folder . "/image.jpg");
+        //Generate unique name
+        $imageName = md5(uniqid(rand(), true)) . ".jpg";
 
-        exit;
+        //Upload file
+        move_uploaded_file($image['tmp_name'], $folder . $imageName);
 
         //Insert into database
-        $query = "INSERT INTO propierties (title, price, description, rooms, wc, parking, sellerId) 
-        VALUES ('$title', '$price', '$description', '$rooms', '$wc', '$parking', '$sellerId')";
+        $query = "INSERT INTO propierties (title, price, image, description, rooms, wc, parking, sellerId) 
+        VALUES ('$title', '$price', '$imageName' , '$description', '$rooms', '$wc', '$parking', '$sellerId')";
 
         //Redirect users
         $result = mysqli_query($db, $query);
-
+        var_dump($result);
         if ($result) {
             header('Location: /admin');
         }
