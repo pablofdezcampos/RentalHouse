@@ -1,4 +1,7 @@
-<?php include 'includes/templates/header.php' ?>
+<?php
+require 'includes/functions.php';
+addTemplate('header');
+?>
 <main class="container section content-center">
     <h1>House in Sale</h1>
     <picture>
@@ -33,4 +36,4 @@
     </div>
 </main>
 
-<?php include 'includes/templates/footer.php' ?>
+<?php addTemplate('footer') ?>

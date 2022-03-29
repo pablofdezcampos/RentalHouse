@@ -209,4 +209,4 @@ addTemplate('header', $start = true);
 
 </div>
 
-<?php include 'includes/templates/footer.php' ?>
+<?php addTemplate('footer') ?>
