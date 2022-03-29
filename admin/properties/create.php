@@ -22,12 +22,13 @@ $sellerId = '';
 //Execute when the user send the form
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-    $title = $_POST['title'];
-    $price = $_POST['price'];
-    $description = $_POST['description'];
-    $rooms = $_POST['rooms'];
-    $wc = $_POST['wc'];
-    $parking = $_POST['parking'];
+    //Sanitization to prevent SQL Injection -> mysqli_real_scape_string
+    $title = mysqli_real_escape_string($db, $_POST['title']);
+    $price = mysqli_real_escape_string($db, $_POST['price']);
+    $description = mysqli_real_escape_string($db, $_POST['description']);
+    $rooms = mysqli_real_escape_string($db, $_POST['rooms']);
+    $wc = mysqli_real_escape_string($db, $_POST['wc']);
+    $parking = mysqli_real_escape_string($db, $_POST['parking']);
     $sellerId = isset($_POST['seller']);
 
     if (!$title) {
@@ -63,9 +64,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $query = "INSERT INTO propierties (title, price, description, rooms, wc, parking, sellerId) 
         VALUES ('$title', '$price', '$description', '$rooms', '$wc', '$parking', '$sellerId')";
 
+        //Redirect users
         $result = mysqli_query($db, $query);
 
-        //Redirect user
         if ($result) {
             header('Location: /admin');
         }
