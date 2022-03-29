@@ -61,9 +61,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (empty($errors)) {
         //Insert into database
         $query = "INSERT INTO propierties (title, price, description, rooms, wc, parking, sellerId) 
-        VALUES ( '$title', '$price', '$description', '$rooms', '$wc', '$parking', '$sellerId)";
+        VALUES ('$title', '$price', '$description', '$rooms', '$wc', '$parking', '$sellerId')";
 
-        $result = mysqli_query($db, $query);
+        $input = mysqli_query($db, $query);
     }
 }
 
@@ -114,10 +114,10 @@ addTemplate('header');
         <fieldset>
             <legend>Seller</legend>
 
-            <select name="seller">
+            <select name="seller" title="seller">
                 <option value="0" disabled selected>--Select a seller--</option>
                 <?php while ($seller = mysqli_fetch_assoc($result)) : ?>
-                    <option value="<?php echo $seller['id']; ?>">
+                    <option <?php echo $sellerId === $seller['id'] ? 'selected' : ''; ?> value="<?php echo $seller['id']; ?>">
                         <?php echo $seller['name'] . " " . $seller['surname'] ?>
                     </option>
                 <?php endwhile; ?>
