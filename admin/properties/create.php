@@ -1,14 +1,14 @@
 <?php
-//DataBase
+
+//Connection to DataBase
 require '../../includes/config/database.php';
 $db = connectDataBase();
 
+//Array with errors message
+$errors = [];
 
+//Execute when the user send the form
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
-    //echo "<pre>";
-    //var_dump($_POST);
-    //echo "</pre>";
 
     $title = $_POST['title'];
     $price = $_POST['price'];
@@ -16,13 +16,43 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $rooms = $_POST['rooms'];
     $wc = $_POST['wc'];
     $parking = $_POST['parking'];
-    $sellerId = $_POST['seller'];
+    $sellerId = isset($_POST['seller']);
 
-    //Insert into database
-    $query = "INSERT INTO propierties (title, price, description, rooms, wc, parking, sellerId) 
-    VALUES ( '$title', '$price', '$description', '$rooms', '$wc', '$parking', '$sellerId')";
+    if (!$title) {
+        $errors[] = 'You must add a title';
+    }
 
-    $result = mysqli_query($db, $query);
+    if (!$price) {
+        $errors[] = 'The price is required';
+    }
+
+    if (strlen($description) < 5) {
+        $errors[] = 'You have to add a description';
+    }
+
+    if (!$rooms) {
+        $errors[] = 'Rooms are required';
+    }
+
+    if (!$wc) {
+        $errors[] = 'Bathrooms are required';
+    }
+
+    if (!$parking) {
+        $errors[] = 'The parking is required';
+    }
+
+    if (!$sellerId) {
+        $errors[] = 'Choose a seller';
+    }
+
+    if (empty($errors)) {
+        //Insert into database
+        $query = "INSERT INTO propierties (title, price, description, rooms, wc, parking, sellerId) 
+        VALUES ( '$title', '$price', '$description', '$rooms', '$wc', '$parking', '$sellerId)";
+
+        $result = mysqli_query($db, $query);
+    }
 }
 
 require '../../includes/functions.php';
@@ -32,6 +62,12 @@ addTemplate('header');
 <main class="container section">
     <h1>Create</h1>
     <a href="/admin" class="button-yellow"> Go back </a>
+
+    <?php foreach ($errors as $error) : ?>
+        <div class="alert error">
+            <?php echo $error ?>
+        </div>
+    <?php endforeach; ?>
 
     <form class="form" method="POST" action="/admin/properties/create.php">
         <fieldset>
@@ -66,7 +102,7 @@ addTemplate('header');
         <fieldset>
             <legend>Seller</legend>
 
-            <select name="seller">
+            <select name="seller" value="seller" id="seller">
                 <option value="0" disabled selected>--Select a seller--</option>
                 <option value="1">Pablo Fdez Campos</option>
                 <option value="2">Álvaro Navas Soto</option>
