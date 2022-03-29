@@ -7,6 +7,14 @@ $db = connectDataBase();
 //Array with errors message
 $errors = [];
 
+$title = '';
+$price = '';
+$description = '';
+$rooms = '';
+$wc = '';
+$parking = '';
+$sellerId = '';
+
 //Execute when the user send the form
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
@@ -74,35 +82,35 @@ addTemplate('header');
             <legend>General Information</legend>
 
             <label for="title">Title:</label>
-            <input type="text" id="title" name="title" placeholder="Property Title">
+            <input type="text" id="title" name="title" placeholder="Property Title" value="<?php echo $title; ?>">
 
             <label for="price">Price:</label>
-            <input type="number" id="price" name="price" placeholder="Property Price" min="200">
+            <input type="number" id="price" name="price" placeholder="Property Price" min="200" value="<?php echo $price; ?>">
 
             <label for="image">Image:</label>
             <input type="file" id="image" accept="image/jpeg, image/png">
 
             <label for="description">Description:</label>
-            <textarea id="description" name="description" cols="30" rows="10"></textarea>
+            <textarea id="description" name="description" cols="30" rows="10" value="<?php echo $description; ?>"></textarea>
         </fieldset>
 
         <fieldset>
             <legend>Property Information</legend>
 
             <label for="rooms">Rooms:</label>
-            <input type="number" id="rooms" name="rooms" placeholder="Property Title" min="1" max="10" placeholder="Ex: 3">
+            <input type="number" id="rooms" name="rooms" placeholder="Property Title" min="1" max="10" placeholder="Ex: 3" value="<?php echo $rooms; ?>">
 
             <label for="wc">Bathrooms:</label>
-            <input type="number" id="bathrooms" name="wc" placeholder="Property Title" min="1" max="10">
+            <input type="number" id="bathrooms" name="wc" placeholder="Property Title" min="1" max="10" placeholder="Ex: 3" value="<?php echo $wc; ?>">
 
             <label for="parking">Parking:</label>
-            <input type="number" id="parking" name="parking" placeholder="Property Title" min="1" max="5">
+            <input type="number" id="parking" name="parking" placeholder="Property Title" min="1" max="5" placeholder="Ex: 3" value="<?php echo $parking; ?>">
         </fieldset>
 
         <fieldset>
             <legend>Seller</legend>
 
-            <select name="seller" value="seller" id="seller">
+            <select name="seller">
                 <option value="0" disabled selected>--Select a seller--</option>
                 <option value="1">Pablo Fdez Campos</option>
                 <option value="2">Álvaro Navas Soto</option>
