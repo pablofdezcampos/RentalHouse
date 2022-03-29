@@ -96,7 +96,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $result = mysqli_query($db, $query);
         var_dump($result);
         if ($result) {
-            header('Location: /admin');
+            header('Location: /admin?result=1');
         }
     }
 }

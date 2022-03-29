@@ -9,4 +9,7 @@
     &.error {
         background-color: v.$red;
     }
+    &.success {
+        background-color: v.$green;
+    }
 }
