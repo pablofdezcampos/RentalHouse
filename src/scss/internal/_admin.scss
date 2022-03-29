@@ -13,3 +13,22 @@
         background-color: v.$green;
     }
 }
+
+table.propierties {
+    margin-top: 4rem;
+    width: 100%;
+    border-spacing: 0;
+    border: 1px solid v.$white;
+    color: v.$white;
+    thead {
+        background-color: v.$green;
+    }
+    th {
+        color: v.$white;
+        padding: 2rem;
+    }
+    .image-table {
+        width: 7rem;
+        height: 7rem;
+    }
+}
