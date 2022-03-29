@@ -4,6 +4,10 @@
 require '../../includes/config/database.php';
 $db = connectDataBase();
 
+//Consultation to get the sellers
+$consultation = "SELECT * FROM seller";
+$result = mysqli_query($db, $consultation);
+
 //Array with errors message
 $errors = [];
 
@@ -91,7 +95,7 @@ addTemplate('header');
             <input type="file" id="image" accept="image/jpeg, image/png">
 
             <label for="description">Description:</label>
-            <textarea id="description" name="description" cols="30" rows="10" value="<?php echo $description; ?>"></textarea>
+            <textarea id="description" name="description"><?php echo $description; ?></textarea>
         </fieldset>
 
         <fieldset>
@@ -112,9 +116,11 @@ addTemplate('header');
 
             <select name="seller">
                 <option value="0" disabled selected>--Select a seller--</option>
-                <option value="1">Pablo Fdez Campos</option>
-                <option value="2">Álvaro Navas Soto</option>
-                <option value="3">Manuel García Alonso</option>
+                <?php while ($seller = mysqli_fetch_assoc($result)) : ?>
+                    <option value="<?php echo $seller['id']; ?>">
+                        <?php echo $seller['name'] . " " . $seller['surname'] ?>
+                    </option>
+                <?php endwhile; ?>
             </select>
         </fieldset>
 
