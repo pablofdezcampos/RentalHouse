@@ -19,17 +19,20 @@ table.propierties {
     width: 100%;
     border-spacing: 0;
     border: 1px solid v.$white;
-    color: v.$white;
     text-align: center;
     thead {
+        color: v.$white;
         background-color: v.$green;
     }
     th {
-        color: v.$white;
         padding: 2rem;
     }
     .image-table {
         width: 7rem;
         height: 7rem;
     }
+}
+
+.small-image {
+    width: 20rem;
 }
