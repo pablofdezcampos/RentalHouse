@@ -1,11 +1,26 @@
 <?php
+
+//Import Connection
+require '../includes/config/database.php';
+$db = connectDataBase();
+
+//Write Query
+$query = 'SELECT * FROM propierties';
+
+//Consult DataBase
+$resultQuery = mysqli_query($db, $query);
+
+//Include alert of advert creation
 $result = $_GET['result'] ?? null;
+
+//Adding templates
 require '../includes/functions.php';
 addTemplate('header');
 ?>
 
 <main class="container section">
     <h1>Admin</h1>
+    <!-- intval to convert to int -->
     <?php if (intval($result) === 1) : ?>
         <p class="alert success">Correctly advert creation</p>
     <?php endif ?>
@@ -24,20 +39,24 @@ addTemplate('header');
         </thead>
 
         <tbody>
-            <tr>
-                <td>1</td>
-                <td>Example Title</td>
-                <td><img src="/img/3d6fe7c6b53204c88cbdb4f6bcee9718.jpg" alt="Image" class="image-table"></td>
-                <td>500000</td>
-                <td>
-                    <a href="#" class="button-red-block">Eliminate</a>
-                    <a href="#" class="button-yellow-block">Update</a>
-                </td>
-            </tr>
+            <?php while ($property = mysqli_fetch_assoc($resultQuery)) : ?>
+                <tr>
+                    <td> <?php echo $property['id']; ?> </td>
+                    <td> <?php echo $property['title']; ?> </td>
+                    <td><img src="/img/<?php echo $property['image']; ?>" alt="Image" class="image-table"></td>
+                    <td><?php echo $property['price']; ?></td>
+                    <td>
+                        <a href="#" class="button-red-block">Eliminate</a>
+                        <a href="#" class="button-yellow-block">Update</a>
+                    </td>
+                </tr>
+            <?php endwhile ?>
         </tbody>
     </table>
 </main>
 
 <?php
+//Close Connection
+mysqli_close($db);
 addTemplate('footer');
 ?>
