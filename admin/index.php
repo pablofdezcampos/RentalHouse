@@ -22,7 +22,9 @@ addTemplate('header');
     <h1>Admin</h1>
     <!-- intval to convert to int -->
     <?php if (intval($result) === 1) : ?>
-        <p class="alert success">Correctly advert creation</p>
+        <p class="alert success">Correctly Advert Creation</p>
+    <?php elseif (intval($result) === 2) : ?>
+        <p class="alert success">Correctly Advert Update</p>
     <?php endif ?>
     <a href="/admin/properties/create.php" class="button-green-inline">Create</a>
 
@@ -47,7 +49,7 @@ addTemplate('header');
                     <td><?php echo $property['price']; ?></td>
                     <td>
                         <a href="#" class="button-red-block">Eliminate</a>
-                        <a href="#" class="button-yellow-block">Update</a>
+                        <a href="../admin/properties/update.php?id=<?php echo $property['id'] ?>" class="button-yellow-block">Update</a>
                     </td>
                 </tr>
             <?php endwhile ?>
