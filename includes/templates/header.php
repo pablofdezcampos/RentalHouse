@@ -1,3 +1,13 @@
+<?php
+
+//check auth user
+if (!isset($_SESSION)) {
+    session_start();
+}
+
+$auth = $_SESSION['login'] ?? false;
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -30,6 +40,9 @@
                         <a href="adverts.php">Adverts</a>
                         <a href="blog.php">Blog</a>
                         <a href="contact.php">Contact</a>
+                        <?php if ($auth) : ?>
+                            <a href="close-session.php">Log Out</a>
+                        <?php endif; ?>
                     </nav>
                 </div>
             </div>
