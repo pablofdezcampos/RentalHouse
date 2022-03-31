@@ -3,7 +3,7 @@ require 'includes/config/database.php';
 $db = connectDataBase();
 
 //Generation of email and password
-$email = 'user';
+$email = 'user@email.com';
 $password = '1234';
 
 $passwordHash = password_hash($password, PASSWORD_DEFAULT);

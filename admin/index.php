@@ -1,5 +1,12 @@
 <?php
 
+require '../includes/functions.php';
+$auth = isAuth();
+
+if (!$auth) {
+    header('Location: /');
+}
+
 //Import Connection
 require '../includes/config/database.php';
 $db = connectDataBase();
@@ -37,8 +44,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-//Adding templates
-require '../includes/functions.php';
 addTemplate('header');
 ?>
 

@@ -1,5 +1,13 @@
 <?php
 
+//Check auth user
+require '../../includes/functions.php';
+$auth = isAuth();
+
+if (!$auth) {
+    header('Location: /');
+}
+
 //Connection to DataBase
 require '../../includes/config/database.php';
 $db = connectDataBase();
@@ -101,7 +109,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-require '../../includes/functions.php';
 addTemplate('header');
 ?>
 

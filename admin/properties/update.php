@@ -1,5 +1,13 @@
 <?php
 
+//Check auth user
+require '../../includes/functions.php';
+$auth = isAuth();
+
+if (!$auth) {
+    header('Location: /');
+}
+
 //Validation of id
 $id = $_GET['id'];
 $id = filter_var($id, FILTER_VALIDATE_INT);
@@ -122,7 +130,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-require '../../includes/functions.php';
 addTemplate('header');
 ?>
 
