@@ -34,4 +34,7 @@
                 </div>
             </div>
         </div>
+
+        <?php echo $start ? "<h1> Sale of Luxury House and Apartments </h1>" : '' ?>
+
     </header>
