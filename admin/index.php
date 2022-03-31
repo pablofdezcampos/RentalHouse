@@ -13,6 +13,30 @@ $resultQuery = mysqli_query($db, $query);
 //Include alert of advert creation
 $result = $_GET['result'] ?? null;
 
+//Checking the REQUEST_METHOD to check we pass the id to elimate the property
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $id = $_POST['id'];
+    $id = filter_var($id, FILTER_VALIDATE_INT);
+
+    if ($id) {
+        //Delete the image file
+        $query = "SELECT image FROM propierties WHERE id = ${id}";
+
+        $result = mysqli_query($db, $query);
+        $property = mysqli_fetch_assoc($result);
+
+        unlink('../img/' . $property['image']);
+
+        //Delete field
+        $query = "DELETE FROM propierties WHERE id = ${id}";
+        $result = mysqli_query($db, $query);
+
+        if ($result) {
+            header('location: /admin?result=3');
+        }
+    }
+}
+
 //Adding templates
 require '../includes/functions.php';
 addTemplate('header');
@@ -25,6 +49,8 @@ addTemplate('header');
         <p class="alert success">Correctly Advert Creation</p>
     <?php elseif (intval($result) === 2) : ?>
         <p class="alert success">Correctly Advert Update</p>
+    <?php elseif (intval($result) === 3) : ?>
+        <p class="alert success">Correctly Advert Elimination</p>
     <?php endif ?>
     <a href="/admin/properties/create.php" class="button-green-inline">Create</a>
 
@@ -48,7 +74,12 @@ addTemplate('header');
                     <td><img src="/img/<?php echo $property['image']; ?>" alt="Image" class="image-table"></td>
                     <td><?php echo $property['price']; ?></td>
                     <td>
-                        <a href="#" class="button-red-block">Eliminate</a>
+                        <form method="POST">
+                            <!-- Input not visible -->
+                            <input type="hidden" name="id" value="<?php echo $property['id']; ?>">
+
+                            <input type="submit" class="w-100 button-red-block" value="Delete">
+                        </form>
                         <a href="../admin/properties/update.php?id=<?php echo $property['id'] ?>" class="button-yellow-block">Update</a>
                     </td>
                 </tr>
