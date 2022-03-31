@@ -92,14 +92,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             mkdir($folder);
         }
 
-        //Generate unique name
-        $imageName = md5(uniqid(rand(), true)) . ".jpg";
+        $imageName = '';
 
-        //Upload file
-        move_uploaded_file($image['tmp_name'], $folder . $imageName);
+        //Check if there is a new image. If it is, delete the image in the container folder
+        if ($image['name']) {
+            unlink($folder . $propierty['image']);
+
+            //Generate unique name
+            $imageName = md5(uniqid(rand(), true)) . ".jpg";
+
+            //Upload file (Move the file to the folder we put)
+            move_uploaded_file($image['tmp_name'], $folder . $imageName);
+
+            //Else if we do not select a new image. Put the image that was before.
+        } else {
+            $imageName = $propierty['image'];
+        }
 
         //Insert into database
-        $query = "UPDATE propierties SET title = '${title}', price = '${price}', 
+        $query = "UPDATE propierties SET title = '${title}', price = '${price}', image = '${imageName}', 
                 description = '${description}', rooms = ${rooms}, wc = ${wc}, parking = ${parking}, 
                 sellerId = ${sellerId} WHERE id = ${id}";
         //Redirect users
