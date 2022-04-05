@@ -1,15 +1,11 @@
 <?php
 
 require '../includes/functions.php';
-$auth = isAuth();
+isAuth();
 
-if (!$auth) {
-    header('Location: /');
-}
+use App\Propierty;
 
-//Import Connection
-require '../includes/config/database.php';
-$db = connectDataBase();
+$propierties = Propierty::all();
 
 //Write Query
 $query = 'SELECT * FROM propierties';
