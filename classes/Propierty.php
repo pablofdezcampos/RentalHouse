@@ -7,6 +7,10 @@ class Propierty
 
     //Database
     protected static $db;
+    protected static $columnsDB = ['id', 'title', 'price', 'image', 'description', 'rooms', 'wc', 'parking', 'create', 'sellerId'];
+
+    //Errors
+    protected static $errors = [];
 
     public $id;
     public $title;
@@ -34,17 +38,96 @@ class Propierty
         $this->sellerId = $args['sellerId'] ?? '';
     }
 
-    public function save()
-    {
-        $query = "INSERT INTO propierties (title, price, image, description, rooms, wc, parking, sellerId) 
-        VALUES ('$this->title', '$this->price', '$this->image' , '$this->description', '$this->rooms', '$this->wc', '$this->parking', '$this->create', '$this->sellerId')";
-
-        $result = self::$db->query($query);
-    }
-
     //Define Connection
     public static function setDataBase($database)
     {
         self::$db = $database;
+    }
+
+    public function save()
+    {
+        //Sanitization
+        $attributes = $this->sanitization();
+
+        $string = join(', ', array_keys($attributes));
+
+        $query = "INSERT INTO propierties (";
+        $query .= join(', ', array_keys($attributes));
+        $query .= " ) VALUES (' ";
+        $query .= join("', '", array_values($attributes));
+        $query .= " ') ";
+
+        $result = self::$db->query($query);
+    }
+
+    public function attributes()
+    {
+        $attributes = [];
+        foreach (self::$columnsDB as $column) {
+            if ($column === 'id') continue;
+            $attributes[$column] = $this->$column;
+        }
+        return $attributes;
+    }
+
+    public function sanitization()
+    {
+        $attributes = $this->attributes();
+        $sanizitation = [];
+
+        foreach ($attributes as $key => $value) {
+            $sanizitation[$key] = self::$db->escape_string($value);
+        }
+
+        return $sanizitation;
+    }
+
+    //Validation
+    public static function getErrors()
+    {
+        return self::$errors;
+    }
+
+    public function validation()
+    {
+        if (!$this->title) {
+            self::$errors[] = 'You must add a title';
+        }
+
+        if (!$this->price) {
+            self::$errors[] = 'The price is required';
+        }
+
+        if (strlen($this->description) < 5) {
+            self::$errors[] = 'You have to add a description';
+        }
+
+        if (!$this->rooms) {
+            self::$errors[] = 'Rooms are required';
+        }
+
+        if (!$this->wc) {
+            self::$errors[] = 'Bathrooms are required';
+        }
+
+        if (!$this->parking) {
+            self::$errors[] = 'The parking is required';
+        }
+
+        if (!$this->sellerId) {
+            self::$errors[] = 'Choose a seller';
+        }
+
+        /*if (!$this->image['name'] || $this->image['error']) {
+            $errors[] = 'The image is required';
+        }
+
+        //Validate image by size
+        $size = 1000 * 1000; //1mb max
+        if ($this->image['size'] > $size) {
+            $errors[] = 'The image weigth to much';
+        }*/
+
+        return self::$errors;
     }
 }

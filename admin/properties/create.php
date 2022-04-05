@@ -15,7 +15,7 @@ $consultation = "SELECT * FROM seller";
 $result = mysqli_query($db, $consultation);
 
 //Array with errors message
-$errors = [];
+$errors = Propierty::getErrors();
 
 $title = '';
 $price = '';
@@ -29,58 +29,15 @@ $sellerId = '';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $propierty = new Propierty($_POST);
-    $propierty->save();
 
-    //Sanitization to prevent SQL Injection -> mysqli_real_scape_string
-    $title = mysqli_real_escape_string($db, $_POST['title']);
-    $price = mysqli_real_escape_string($db, $_POST['price']);
-    $description = mysqli_real_escape_string($db, $_POST['description']);
-    $rooms = mysqli_real_escape_string($db, $_POST['rooms']);
-    $wc = mysqli_real_escape_string($db, $_POST['wc']);
-    $parking = mysqli_real_escape_string($db, $_POST['parking']);
-    $sellerId = isset($_POST['seller']);
-
-    $image = $_FILES['image'];
-
-    if (!$title) {
-        $errors[] = 'You must add a title';
-    }
-
-    if (!$price) {
-        $errors[] = 'The price is required';
-    }
-
-    if (strlen($description) < 5) {
-        $errors[] = 'You have to add a description';
-    }
-
-    if (!$rooms) {
-        $errors[] = 'Rooms are required';
-    }
-
-    if (!$wc) {
-        $errors[] = 'Bathrooms are required';
-    }
-
-    if (!$parking) {
-        $errors[] = 'The parking is required';
-    }
-
-    if (!$sellerId) {
-        $errors[] = 'Choose a seller';
-    }
-
-    if (!$image['name'] || $image['error']) {
-        $errors[] = 'The image is required';
-    }
-
-    //Validate image by size
-    $size = 1000 * 1000; //1mb max
-    if ($image['size'] > $size) {
-        $errors[] = 'The image weigth to much';
-    }
+    //Validation
+    $errors = $propierty->validation();
 
     if (empty($errors)) {
+
+        $propierty->save();
+
+        $image = $_FILES['image'];
 
         /* Upload files */
 
