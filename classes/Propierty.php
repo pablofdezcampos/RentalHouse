@@ -29,12 +29,12 @@ class Propierty
         $this->id = $args['id'] ?? '';
         $this->title = $args['title'] ?? '';
         $this->price = $args['price'] ?? '';
-        $this->image = $args['image'] ?? 'image.jpg';
+        $this->image = $args['image'] ?? '';
         $this->description = $args['description'] ?? '';
         $this->rooms = $args['rooms'] ?? '';
         $this->wc = $args['wc'] ?? '';
         $this->parking = $args['parking'] ?? '';
-        $this->create = date('Y/m/d') ?? '';
+        $this->create = date('Y/m/D');
         $this->sellerId = $args['sellerId'] ?? '';
     }
 
@@ -49,8 +49,6 @@ class Propierty
         //Sanitization
         $attributes = $this->sanitization();
 
-        $string = join(', ', array_keys($attributes));
-
         $query = "INSERT INTO propierties (";
         $query .= join(', ', array_keys($attributes));
         $query .= " ) VALUES (' ";
@@ -58,6 +56,8 @@ class Propierty
         $query .= " ') ";
 
         $result = self::$db->query($query);
+
+        return $result;
     }
 
     public function attributes()
@@ -82,6 +82,14 @@ class Propierty
         return $sanizitation;
     }
 
+    //Upload files
+    public function setImage($image)
+    {
+        if ($image) {
+            $this->image = $image;
+        }
+    }
+
     //Validation
     public static function getErrors()
     {
@@ -96,6 +104,10 @@ class Propierty
 
         if (!$this->price) {
             self::$errors[] = 'The price is required';
+        }
+
+        if (!$this->image) {
+            self::$errors[] = 'The image is required';
         }
 
         if (strlen($this->description) < 5) {
@@ -117,16 +129,6 @@ class Propierty
         if (!$this->sellerId) {
             self::$errors[] = 'Choose a seller';
         }
-
-        /*if (!$this->image['name'] || $this->image['error']) {
-            $errors[] = 'The image is required';
-        }
-
-        //Validate image by size
-        $size = 1000 * 1000; //1mb max
-        if ($this->image['size'] > $size) {
-            $errors[] = 'The image weigth to much';
-        }*/
 
         return self::$errors;
     }

@@ -3,6 +3,7 @@
 require '../../includes/app.php';
 
 use App\Propierty;
+use Intervention\Image\ImageManagerStatic as Image;
 
 //Check auth user
 isAuth();
@@ -12,7 +13,7 @@ $db = connectDataBase();
 
 //Consultation to get the sellers
 $consultation = "SELECT * FROM seller";
-$result = mysqli_query($db, $consultation);
+$resulta = mysqli_query($db, $consultation);
 
 //Array with errors message
 $errors = Propierty::getErrors();
@@ -30,38 +31,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $propierty = new Propierty($_POST);
 
+    //Generate unique name
+    $imageName = md5(uniqid(rand(), true)) . ".jpg";
+
+    //Resize with intervention/image
+    if ($_FILES['image']['tmp_name']) {
+        $image = Image::make($_FILES['image']['tmp_name'])->fit(800, 600);
+        $propierty->setImage($imageName);
+    }
+
     //Validation
     $errors = $propierty->validation();
 
     if (empty($errors)) {
-
-        $propierty->save();
-
-        $image = $_FILES['image'];
-
-        /* Upload files */
-
         //Create folder
-        $folder = '../../img/';
-
-        if (!is_dir($folder)) {
-            mkdir($folder);
+        if (!is_dir(IMAGE_FOLDER)) {
+            mkdir(IMAGE_FOLDER);
         }
 
-        //Generate unique name
-        $imageName = md5(uniqid(rand(), true)) . ".jpg";
+        //Save image in the server
+        $image->save(IMAGE_FOLDER . $imageName);
 
-        //Upload file
-        move_uploaded_file($image['tmp_name'], $folder . $imageName);
-
-        //Insert into database
-        $query = "INSERT INTO propierties (title, price, image, description, rooms, wc, parking, sellerId) 
-        VALUES ('$title', '$price', '$imageName' , '$description', '$rooms', '$wc', '$parking', '$sellerId')";
-
-        $result = mysqli_query($db, $query);
+        //Save in database
+        $result = $propierty->save();
 
         //Redirect users
-        var_dump($result);
         if ($result) {
             header('Location: /admin?result=1');
         }
@@ -118,7 +112,7 @@ addTemplate('header');
             <!-- name of the field of database -->
             <select name="sellerId" title="seller">
                 <option value="0" disabled selected>--Select a seller--</option>
-                <?php while ($seller = mysqli_fetch_assoc($result)) : ?>
+                <?php while ($seller = mysqli_fetch_assoc($resulta)) : ?>
                     <option <?php echo $sellerId === $seller['id'] ? 'selected' : ''; ?> value="<?php echo $seller['id']; ?>">
                         <?php echo $seller['name'] . " " . $seller['surname'] ?>
                     </option>
