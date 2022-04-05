@@ -1,6 +1,5 @@
 <?php
 //Import the connection
-require 'includes/config/database.php';
 $db = connectDataBase();
 
 //Query DataBase

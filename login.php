@@ -1,5 +1,6 @@
 <?php
-require 'includes/config/database.php';
+
+require 'includes/app.php';
 $db = connectDataBase();
 
 $errors = [];
@@ -50,7 +51,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-require 'includes/functions.php';
 addTemplate('header');
 ?>
 

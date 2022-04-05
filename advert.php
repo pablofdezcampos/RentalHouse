@@ -8,8 +8,10 @@ if (!$id) {
     header('Location:/');
 }
 
+
+require 'includes/app.php';
+
 //Import the connection
-require 'includes/config/database.php';
 $db = connectDataBase();
 
 $query = "SELECT * FROM propierties WHERE id = ${id}";
@@ -23,7 +25,6 @@ if ($result->num_rows === 0) {
 
 $property = mysqli_fetch_assoc($result);
 
-require 'includes/functions.php';
 addTemplate('header');
 ?>
 <main class="container section content-center">

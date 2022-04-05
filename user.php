@@ -1,5 +1,5 @@
 <?php
-require 'includes/config/database.php';
+require 'includes/app.php';
 $db = connectDataBase();
 
 //Generation of email and password
