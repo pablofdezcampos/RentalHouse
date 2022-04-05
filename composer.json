@@ -6,7 +6,9 @@
         "name": "Pablo Fernández Campos",
         "email": "pablofdezcvc1@hotmail.com"
     }],
-    "require": {},
+    "require": {
+        "intervention/image": "^2.7"
+    },
     "autoload": {
         "psr-4": {
             "App\\": "./classes"

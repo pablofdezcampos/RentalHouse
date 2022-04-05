@@ -2,6 +2,7 @@
 
 define('TEMPLATES_URL', __DIR__ . '/templates');
 define('FUNCTIONS_URL',  __DIR__ . 'functions.php');
+define('IMAGE_FOLDER', __DIR__ . '/../img/');
 
 
 function addTemplate(string $name, bool $start = false)
