@@ -1,7 +1,12 @@
 <?php
 
+require '../../includes/app.php';
+
+use App\Propierty;
+
+$propierty = new Propierty;
+
 //Check auth user
-require '../../includes/functions.php';
 $auth = isAuth();
 
 if (!$auth) {
@@ -9,7 +14,6 @@ if (!$auth) {
 }
 
 //Connection to DataBase
-require '../../includes/config/database.php';
 $db = connectDataBase();
 
 //Consultation to get the sellers

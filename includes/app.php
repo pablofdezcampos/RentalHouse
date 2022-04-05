@@ -5,5 +5,3 @@ require 'config/database.php';
 require __DIR__ . '/../vendor/autoload.php';
 
 use App\Propierty;
-
-$propierty = new Propierty;
