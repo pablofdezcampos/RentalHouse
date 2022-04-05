@@ -132,4 +132,32 @@ class Propierty
 
         return self::$errors;
     }
+
+    public static function all()
+    {
+        $query = "SELECT * FROM propierties";
+        $result = self::consultSQL($query);
+    }
+
+    public static function consultSQL($query)
+    {
+        $result = self::$db->query($query);
+
+        //Iterate
+        $array = [];
+        while ($register = $result->fetch_assoc()) {
+            $array[] = self::createObject($register);
+        }
+    }
+
+    protected static function createObject($register)
+    {
+        $object = new self;
+
+        foreach ($register as $key => $value) {
+            if (property_exists($object, $key)) {
+                $object->$key = $value;
+            }
+        }
+    }
 }
