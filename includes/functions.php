@@ -9,13 +9,18 @@ function addTemplate(string $name, bool $start = false)
     include TEMPLATES_URL . "/${name}.php";
 }
 
-function isAuth(): bool
+function isAuth()
 {
     session_start();
 
-    $auth = $_SESSION['login'];
-    if ($auth) {
-        return true;
+    if (!$_SESSION['login']) {
+        header('Location: /');
     }
-    return false;
+}
+
+function debug($variable)
+{
+    echo "<pre>";
+    var_dump($variable);
+    echo "</pre>";
 }

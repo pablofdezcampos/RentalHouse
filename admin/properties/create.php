@@ -4,14 +4,8 @@ require '../../includes/app.php';
 
 use App\Propierty;
 
-$propierty = new Propierty;
-
 //Check auth user
-$auth = isAuth();
-
-if (!$auth) {
-    header('Location: /');
-}
+isAuth();
 
 //Connection to DataBase
 $db = connectDataBase();
@@ -33,6 +27,9 @@ $sellerId = '';
 
 //Execute when the user send the form
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+    $propierty = new Propierty($_POST);
+    $propierty->save();
 
     //Sanitization to prevent SQL Injection -> mysqli_real_scape_string
     $title = mysqli_real_escape_string($db, $_POST['title']);
@@ -104,8 +101,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $query = "INSERT INTO propierties (title, price, image, description, rooms, wc, parking, sellerId) 
         VALUES ('$title', '$price', '$imageName' , '$description', '$rooms', '$wc', '$parking', '$sellerId')";
 
-        //Redirect users
         $result = mysqli_query($db, $query);
+
+        //Redirect users
         var_dump($result);
         if ($result) {
             header('Location: /admin?result=1');
@@ -160,7 +158,8 @@ addTemplate('header');
         <fieldset>
             <legend>Seller</legend>
 
-            <select name="seller" title="seller">
+            <!-- name of the field of database -->
+            <select name="sellerId" title="seller">
                 <option value="0" disabled selected>--Select a seller--</option>
                 <?php while ($seller = mysqli_fetch_assoc($result)) : ?>
                     <option <?php echo $sellerId === $seller['id'] ? 'selected' : ''; ?> value="<?php echo $seller['id']; ?>">
