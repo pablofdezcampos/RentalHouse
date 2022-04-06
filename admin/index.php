@@ -4,10 +4,12 @@ require '../includes/app.php';
 isAuth();
 
 use App\Propierty;
+use App\Seller;
 
 //Get all propierties
 $propierties = Propierty::all();
 
+$sellers = Seller::all();
 
 //Include alert of advert creation
 $result = $_GET['result'] ?? null;
@@ -38,6 +40,7 @@ addTemplate('header');
     <?php endif ?>
     <a href="/admin/properties/create.php" class="button-green-inline">Create</a>
 
+    <h2>Propierties</h2>
     <table class="propierties">
 
         <thead>
@@ -56,7 +59,7 @@ addTemplate('header');
                     <td> <?php echo $property->id; ?> </td>
                     <td> <?php echo $property->title; ?> </td>
                     <td><img src="/img/<?php echo $property->image; ?>" alt="Image" class="image-table"></td>
-                    <td><?php echo $property->price; ?></td>
+                    <td><?php echo $property->price; ?>€</td>
                     <td>
                         <form method="POST">
                             <!-- Input not visible -->
@@ -64,7 +67,41 @@ addTemplate('header');
 
                             <input type="submit" class="w-100 button-red-block" value="Delete">
                         </form>
-                        <a href="../admin/properties/update.php?id=<?php echo $property->id ?>" class="button-yellow-block">Update</a>
+                        <a href="../admin/sellers/update.php?id=<?php echo $property->id ?>" class="button-yellow-block">Update</a>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+
+
+    <h2>Sellers</h2>
+
+    <table class="propierties">
+
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Phone</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <?php foreach ($sellers as $seller) : ?>
+                <tr>
+                    <td> <?php echo $seller->id; ?> </td>
+                    <td> <?php echo $seller->name . " " . $seller->surname; ?> </td>
+                    <td><?php echo $seller->phone; ?></td>
+                    <td>
+                        <form method="POST">
+                            <!-- Input not visible -->
+                            <input type="hidden" name="id" value="<?php echo $seller->id; ?>">
+
+                            <input type="submit" class="w-100 button-red-block" value="Delete">
+                        </form>
+                        <a href="../admin/properties/update.php?id=<?php echo $seller->id ?>" class="button-yellow-block">Update</a>
                     </td>
                 </tr>
             <?php endforeach; ?>

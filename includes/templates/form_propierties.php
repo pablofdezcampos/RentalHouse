@@ -35,7 +35,7 @@
 
     <label for="">Seller</label>
     <select name="propierty[sellerId]" id="seller">
-        <option value="">-- Select a seller --</option>
+        <option disabled>-- Select a seller --</option>
         <?php foreach ($sellers as $seller) { ?>
             <option <?php echo $propierty->sellerId === $seller->id ? 'selected' : ''; ?> value="<?php echo sanitization($seller->id) ?>">
                 <?php echo sanitization($seller->name) . " " . sanitization($seller->surname); ?>
