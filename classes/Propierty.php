@@ -35,7 +35,7 @@ class Propierty
         $this->wc = $args['wc'] ?? '';
         $this->parking = $args['parking'] ?? '';
         //$this->create = date('Y/m/D');
-        $this->sellerId = $args['sellerId'] ?? '';
+        $this->sellerId = $args['sellerId'] ?? 1;
     }
 
     //Define Connection

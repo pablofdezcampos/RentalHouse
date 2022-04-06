@@ -25,3 +25,10 @@ function debug($variable)
     var_dump($variable);
     echo "</pre>";
 }
+
+//Scape / Sanitization HTML
+function sanitization($html): string
+{
+    $s = htmlspecialchars($html);
+    return $s;
+}
