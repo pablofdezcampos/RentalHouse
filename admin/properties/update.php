@@ -3,6 +3,7 @@
 //Check auth user
 
 use App\Propierty;
+use Intervention\Image\ImageManagerStatic as Image;
 
 require '../../includes/app.php';
 isAuth();
@@ -24,7 +25,7 @@ $consultation = "SELECT * FROM seller";
 $result = mysqli_query($db, $consultation);
 
 //Array with errors message
-$errors = [];
+$errors = Propierty::getErrors();
 
 //Execute when the user send the form
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -33,80 +34,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $args = $_POST['propierty'];
     $propierty->syncUp($args);
 
-    $image = $_FILES['image'];
+    //Validation
+    $errors = $propierty->validation();
 
-    if (!$title) {
-        $errors[] = 'You must add a title';
-    }
+    //Generation of a unique name
+    $imageName = md5(uniqid(rand(), true)) . ".jpg";
 
-    if (!$price) {
-        $errors[] = 'The price is required';
-    }
-
-    if (strlen($description) < 5) {
-        $errors[] = 'You have to add a description';
-    }
-
-    if (!$rooms) {
-        $errors[] = 'Rooms are required';
-    }
-
-    if (!$wc) {
-        $errors[] = 'Bathrooms are required';
-    }
-
-    if (!$parking) {
-        $errors[] = 'The parking is required';
-    }
-
-    if (!$sellerId) {
-        $errors[] = 'Choose a seller';
-    }
-
-    //Validate image by size
-    $size = 1000 * 1000; //1mb max
-    if ($image['size'] > $size) {
-        $errors[] = 'The image weigth to much';
+    //Upload files
+    if ($_FILES['propierty']['tmp_name']['image']) {
+        $image = Image::make($_FILES['propierty']['tmp_name']['image'])->fit(800, 600);
+        $propierty->setImage($imageName);
     }
 
     if (empty($errors)) {
-
-        /* Upload files */
-
-        //Create folder
-        $folder = '../../img/';
-
-        if (!is_dir($folder)) {
-            mkdir($folder);
+        //Store image
+        if ($_FILES['propierty']['tmp_name']['image']) {
+            $image->save(IMAGE_FOLDER . $imageName);
         }
-
-        $imageName = '';
-
-        //Check if there is a new image. If it is, delete the image in the container folder
-        if ($image['name']) {
-            unlink($folder . $propierty['image']);
-
-            //Generate unique name
-            $imageName = md5(uniqid(rand(), true)) . ".jpg";
-
-            //Upload file (Move the file to the folder we put)
-            move_uploaded_file($image['tmp_name'], $folder . $imageName);
-
-            //Else if we do not select a new image. Put the image that was before.
-        } else {
-            $imageName = $propierty['image'];
-        }
-
-        //Insert into database
-        $query = "UPDATE propierties SET title = '${title}', price = '${price}', image = '${imageName}', 
-                description = '${description}', rooms = ${rooms}, wc = ${wc}, parking = ${parking}, 
-                sellerId = ${sellerId} WHERE id = ${id}";
-        //Redirect users
-        $result = mysqli_query($db, $query);
-        var_dump($result);
-        if ($result) {
-            header('Location: /admin?result=2');
-        }
+        $propierty->update();
     }
 }
 

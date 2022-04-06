@@ -46,6 +46,15 @@ class Propierty
 
     public function save()
     {
+        if (!is_null($this->id)) {
+            $this->update();
+        } else {
+            $this->create();
+        }
+    }
+
+    public function create()
+    {
         //Sanitization
         $attributes = $this->sanitization();
 
@@ -57,6 +66,30 @@ class Propierty
 
         $result = self::$db->query($query);
         return $result;
+    }
+
+    public function update()
+    {
+        $attributes = $this->sanitization();
+
+        $values = [];
+        foreach ($attributes as $key => $value) {
+            $values[] = "{$key}='{$value}'";
+        }
+
+        $query = "UPDATE propierties SET ";
+        //Concatenation to set the values
+        $query .= join(', ', $values);
+        $query .= " WHERE id = '" . self::$db->escape_string($this->id) . "' ";
+        $query .= " LIMIT 1 ";
+
+        echo $query;
+
+        $result = self::$db->query($query);
+
+        if ($result) {
+            header('Location: /admin?result=2');
+        }
     }
 
     public function attributes()
@@ -84,6 +117,14 @@ class Propierty
     //Upload files
     public function setImage($image)
     {
+        //Delete previous image
+        if ($this->id) {
+            $existsFile = file_exists(IMAGE_FOLDER . $this->image);
+            if ($existsFile) {
+                unlink(IMAGE_FOLDER . $this->image);
+            }
+        }
+
         if ($image) {
             $this->image = $image;
         }

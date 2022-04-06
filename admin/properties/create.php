@@ -47,7 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $image->save(IMAGE_FOLDER . $imageName);
 
         //Save in database
-        $result = $propierty->save();
+        $result = $propierty->create();
 
         //Redirect users
         if ($result) {
