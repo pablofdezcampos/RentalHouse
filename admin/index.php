@@ -1,17 +1,13 @@
 <?php
 
-require '../includes/functions.php';
+require '../includes/app.php';
 isAuth();
 
 use App\Propierty;
 
-// $propierties = Propierty::all();
+//Get all propierties
+$propierties = Propierty::all();
 
-//Write Query
-$query = 'SELECT * FROM propierties';
-
-//Consult DataBase
-//$resultQuery = mysqli_query($db, $query);
 
 //Include alert of advert creation
 $result = $_GET['result'] ?? null;
@@ -68,23 +64,23 @@ addTemplate('header');
         </thead>
 
         <tbody>
-            <?php while ($property = mysqli_fetch_assoc($resultQuery)) : ?>
+            <?php foreach ($propierties as $property) : ?>
                 <tr>
-                    <td> <?php echo $property['id']; ?> </td>
-                    <td> <?php echo $property['title']; ?> </td>
-                    <td><img src="/img/<?php echo $property['image']; ?>" alt="Image" class="image-table"></td>
-                    <td><?php echo $property['price']; ?></td>
+                    <td> <?php echo $property->id; ?> </td>
+                    <td> <?php echo $property->title; ?> </td>
+                    <td><img src="/img/<?php echo $property->image; ?>" alt="Image" class="image-table"></td>
+                    <td><?php echo $property->price; ?></td>
                     <td>
                         <form method="POST">
                             <!-- Input not visible -->
-                            <input type="hidden" name="id" value="<?php echo $property['id']; ?>">
+                            <input type="hidden" name="id" value="<?php echo $property->id; ?>">
 
                             <input type="submit" class="w-100 button-red-block" value="Delete">
                         </form>
-                        <a href="../admin/properties/update.php?id=<?php echo $property['id'] ?>" class="button-yellow-block">Update</a>
+                        <a href="../admin/properties/update.php?id=<?php echo $property->id ?>" class="button-yellow-block">Update</a>
                     </td>
                 </tr>
-            <?php endwhile ?>
+            <?php endforeach; ?>
         </tbody>
     </table>
 </main>
