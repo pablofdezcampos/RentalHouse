@@ -13,7 +13,7 @@ $db = connectDataBase();
 
 //Consultation to get the sellers
 $consultation = "SELECT * FROM seller";
-$resulta = mysqli_query($db, $consultation);
+$result = mysqli_query($db, $consultation);
 
 //Array with errors message
 $errors = Propierty::getErrors();
@@ -112,7 +112,7 @@ addTemplate('header');
             <!-- name of the field of database -->
             <select name="sellerId" title="seller">
                 <option value="0" disabled selected>--Select a seller--</option>
-                <?php while ($seller = mysqli_fetch_assoc($resulta)) : ?>
+                <?php while ($seller = mysqli_fetch_assoc($result)) : ?>
                     <option <?php echo $sellerId === $seller['id'] ? 'selected' : ''; ?> value="<?php echo $seller['id']; ?>">
                         <?php echo $seller['name'] . " " . $seller['surname'] ?>
                     </option>

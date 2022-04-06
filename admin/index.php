@@ -5,13 +5,13 @@ isAuth();
 
 use App\Propierty;
 
-$propierties = Propierty::all();
+// $propierties = Propierty::all();
 
 //Write Query
 $query = 'SELECT * FROM propierties';
 
 //Consult DataBase
-$resultQuery = mysqli_query($db, $query);
+//$resultQuery = mysqli_query($db, $query);
 
 //Include alert of advert creation
 $result = $_GET['result'] ?? null;

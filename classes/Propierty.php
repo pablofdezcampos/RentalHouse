@@ -7,7 +7,7 @@ class Propierty
 
     //Database
     protected static $db;
-    protected static $columnsDB = ['id', 'title', 'price', 'image', 'description', 'rooms', 'wc', 'parking', 'create', 'sellerId'];
+    protected static $columnsDB = ['id', 'title', 'price', 'image', 'description', 'rooms', 'wc', 'parking', 'sellerId'];
 
     //Errors
     protected static $errors = [];
@@ -20,7 +20,7 @@ class Propierty
     public $rooms;
     public $wc;
     public $parking;
-    public $create;
+    //public $create;
     public $sellerId;
 
     public function __construct($args = [])
@@ -34,7 +34,7 @@ class Propierty
         $this->rooms = $args['rooms'] ?? '';
         $this->wc = $args['wc'] ?? '';
         $this->parking = $args['parking'] ?? '';
-        $this->create = date('Y/m/D');
+        //$this->create = date('Y/m/D');
         $this->sellerId = $args['sellerId'] ?? '';
     }
 
@@ -56,7 +56,6 @@ class Propierty
         $query .= " ') ";
 
         $result = self::$db->query($query);
-
         return $result;
     }
 
@@ -137,6 +136,8 @@ class Propierty
     {
         $query = "SELECT * FROM propierties";
         $result = self::consultSQL($query);
+
+        return $result;
     }
 
     public static function consultSQL($query)
@@ -148,6 +149,11 @@ class Propierty
         while ($register = $result->fetch_assoc()) {
             $array[] = self::createObject($register);
         }
+
+        //Free Up memory
+        $result->free();
+
+        return $array;
     }
 
     protected static function createObject($register)
@@ -159,5 +165,7 @@ class Propierty
                 $object->$key = $value;
             }
         }
+
+        return $object;
     }
 }
