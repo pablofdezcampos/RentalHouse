@@ -1,12 +1,11 @@
 <?php
 
 //Check auth user
-require '../../includes/functions.php';
-$auth = isAuth();
 
-if (!$auth) {
-    header('Location: /');
-}
+use App\Propierty;
+
+require '../../includes/app.php';
+isAuth();
 
 //Validation of id
 $id = $_GET['id'];
@@ -16,14 +15,9 @@ if (!$id) {
     header('Location: /admin');
 }
 
-//Connection to DataBase
-require '../../includes/config/database.php';
-$db = connectDataBase();
 
-//Get data values (We can use same variable´s name because of fetch)
-$consult = "SELECT * FROM propierties WHERE id = ${id}";
-$result = mysqli_query($db, $consult);
-$propierty = mysqli_fetch_assoc($result);
+//Get data values 
+$propierty = Propierty::findById($id);
 
 //Consultation to get the sellers
 $consultation = "SELECT * FROM seller";
@@ -32,26 +26,9 @@ $result = mysqli_query($db, $consultation);
 //Array with errors message
 $errors = [];
 
-$title = $propierty['title'];
-$price = $propierty['price'];
-$description = $propierty['description'];
-$rooms = $propierty['rooms'];
-$wc = $propierty['wc'];
-$parking = $propierty['parking'];
-$sellerId = $propierty['sellerId'];
-$propiertyImage = $propierty['image'];
-
 //Execute when the user send the form
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-    //Sanitization to prevent SQL Injection -> mysqli_real_scape_string
-    $title = mysqli_real_escape_string($db, $_POST['title']);
-    $price = mysqli_real_escape_string($db, $_POST['price']);
-    $description = mysqli_real_escape_string($db, $_POST['description']);
-    $rooms = mysqli_real_escape_string($db, $_POST['rooms']);
-    $wc = mysqli_real_escape_string($db, $_POST['wc']);
-    $parking = mysqli_real_escape_string($db, $_POST['parking']);
-    $sellerId = isset($_POST['seller']);
 
     $image = $_FILES['image'];
 
@@ -145,49 +122,7 @@ addTemplate('header');
 
     <!-- enctype allow to put external files -->
     <form class="form" method="POST" enctype="multipart/form-data">
-        <fieldset>
-            <legend>General Information</legend>
-
-            <label for="title">Title:</label>
-            <input type="text" id="title" name="title" placeholder="Property Title" value="<?php echo $title; ?>">
-
-            <label for="price">Price:</label>
-            <input type="number" id="price" name="price" placeholder="Property Price" min="50000" value="<?php echo $price; ?>">
-
-            <label for="image">Image:</label>
-            <input type="file" id="image" name="image" accept="image/jpeg, image/png">
-            <img src="/img/<?php echo $propiertyImage ?>" alt="Image" class="small-image">
-
-            <label for="description">Description:</label>
-            <textarea id="description" name="description"><?php echo $description; ?></textarea>
-        </fieldset>
-
-        <fieldset>
-            <legend>Property Information</legend>
-
-            <label for="rooms">Rooms:</label>
-            <input type="number" id="rooms" name="rooms" placeholder="Property Title" min="1" max="10" placeholder="Ex: 3" value="<?php echo $rooms; ?>">
-
-            <label for="wc">Bathrooms:</label>
-            <input type="number" id="bathrooms" name="wc" placeholder="Property Title" min="1" max="10" placeholder="Ex: 3" value="<?php echo $wc; ?>">
-
-            <label for="parking">Parking:</label>
-            <input type="number" id="parking" name="parking" placeholder="Property Title" min="1" max="5" placeholder="Ex: 3" value="<?php echo $parking; ?>">
-        </fieldset>
-
-        <fieldset>
-            <legend>Seller</legend>
-
-            <select name="seller" title="seller">
-                <option value="0" disabled selected>--Select a seller--</option>
-                <?php while ($seller = mysqli_fetch_assoc($result)) : ?>
-                    <option <?php echo $sellerId === $seller['id'] ? 'selected' : ''; ?> value="<?php echo $seller['id']; ?>">
-                        <?php echo $seller['name'] . " " . $seller['surname'] ?>
-                    </option>
-                <?php endwhile; ?>
-            </select>
-        </fieldset>
-
+        <?php include '../../includes/templates/form_propierties.php' ?>
         <input type="submit" value="Update Property" class="button-green">
     </form>
 </main>

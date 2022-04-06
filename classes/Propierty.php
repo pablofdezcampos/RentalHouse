@@ -132,6 +132,16 @@ class Propierty
         return self::$errors;
     }
 
+    //Search by id
+    public static function findById($id)
+    {
+        $query = "SELECT * FROM propierties WHERE id = ${id}";
+
+        $result = self::consultSQL($query);
+
+        return array_shift($result);
+    }
+
     public static function all()
     {
         $query = "SELECT * FROM propierties";
