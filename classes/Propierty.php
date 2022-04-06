@@ -28,7 +28,6 @@ class Propierty extends ActiveRecord
         $this->rooms = $args['rooms'] ?? '';
         $this->wc = $args['wc'] ?? '';
         $this->parking = $args['parking'] ?? '';
-        //$this->create = date('Y/m/D');
         $this->sellerId = $args['sellerId'] ?? '';
     }
 }

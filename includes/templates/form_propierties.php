@@ -33,13 +33,14 @@
 <fieldset>
     <legend>Seller</legend>
 
-    <!-- name of the field of database -->
-    <!-- <select name="sellerId" title="seller">
-        <option value="0" disabled selected>--Select a seller--</option>
-        <?php while ($seller = mysqli_fetch_assoc($result)) : ?>
-            <option <?php echo $sellerId === $seller['id'] ? 'selected' : ''; ?> value="<?php echo sanitization($propierty->seller['id']); ?>">
-                <?php echo $seller['name'] . " " . $seller['surname'] ?>
+    <label for="">Seller</label>
+    <select name="propierty[sellerId]" id="seller">
+        <option value="">-- Select a seller --</option>
+        <?php foreach ($sellers as $seller) { ?>
+            <option <?php echo $propierty->sellerId === $seller->id ? 'selected' : ''; ?> value="<?php echo sanitization($seller->id) ?>">
+                <?php echo sanitization($seller->name) . " " . sanitization($seller->surname); ?>
             </option>
-        <?php endwhile; ?>
-    </select> -->
+        <?php } ?>
+    </select>
+
 </fieldset>

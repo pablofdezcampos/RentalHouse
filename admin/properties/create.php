@@ -3,19 +3,16 @@
 require '../../includes/app.php';
 
 use App\Propierty;
+use App\Seller;
 use Intervention\Image\ImageManagerStatic as Image;
 
 //Check auth user
 isAuth();
 
-//Connection to DataBase
-$db = connectDataBase();
-
 $propierty = new Propierty;
 
-//Consultation to get the sellers
-$consultation = "SELECT * FROM seller";
-$result = mysqli_query($db, $consultation);
+//Consult to get all the sellers
+$sellers = Seller::all();
 
 //Array with errors message
 $errors = Propierty::getErrors();
