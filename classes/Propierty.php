@@ -65,7 +65,11 @@ class Propierty
         $query .= " ') ";
 
         $result = self::$db->query($query);
-        return $result;
+
+        //Redirect users
+        if ($result) {
+            header('Location: /admin?result=1');
+        }
     }
 
     public function update()
@@ -83,12 +87,21 @@ class Propierty
         $query .= " WHERE id = '" . self::$db->escape_string($this->id) . "' ";
         $query .= " LIMIT 1 ";
 
-        echo $query;
-
         $result = self::$db->query($query);
 
         if ($result) {
             header('Location: /admin?result=2');
+        }
+    }
+
+    public function delete()
+    {
+        $query = "DELETE FROM propierties WHERE id = " . self::$db->escape_string($this->id) . " LIMIT 1";
+        $result = self::$db->query($query);
+
+        if ($result) {
+            $this->deleteImage();
+            header('location: /admin?result=3');
         }
     }
 
@@ -118,15 +131,21 @@ class Propierty
     public function setImage($image)
     {
         //Delete previous image
-        if ($this->id) {
-            $existsFile = file_exists(IMAGE_FOLDER . $this->image);
-            if ($existsFile) {
-                unlink(IMAGE_FOLDER . $this->image);
-            }
+        if (!is_null($this->id)) {
+            $this->deleteImage();
         }
 
         if ($image) {
             $this->image = $image;
+        }
+    }
+
+    //Delete image
+    public function deleteImage()
+    {
+        $existsFile = file_exists(IMAGE_FOLDER . $this->image);
+        if ($existsFile) {
+            unlink(IMAGE_FOLDER . $this->image);
         }
     }
 

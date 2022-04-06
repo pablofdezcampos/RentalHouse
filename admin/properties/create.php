@@ -47,12 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $image->save(IMAGE_FOLDER . $imageName);
 
         //Save in database
-        $result = $propierty->create();
-
-        //Redirect users
-        if ($result) {
-            header('Location: /admin?result=1');
-        }
+        $propierty->create();
     }
 }
 
