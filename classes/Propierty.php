@@ -178,4 +178,14 @@ class Propierty
 
         return $object;
     }
+
+    //Sync up the objetc in memory with the changes made by for the user
+    public function syncUp($args = [])
+    {
+        foreach ($args as $key => $value) {
+            if (property_exists($this, $value) && !is_null($value)) {
+                $this->$key = $value;
+            }
+        }
+    }
 }

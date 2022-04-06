@@ -29,6 +29,9 @@ $errors = [];
 //Execute when the user send the form
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
+    //Asign fields
+    $args = $_POST['propierty'];
+    $propierty->syncUp($args);
 
     $image = $_FILES['image'];
 

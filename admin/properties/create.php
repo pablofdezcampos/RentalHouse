@@ -23,14 +23,14 @@ $errors = Propierty::getErrors();
 //Execute when the user send the form
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-    $propierty = new Propierty($_POST);
+    $propierty = new Propierty($_POST['propierty']);
 
     //Generate unique name
     $imageName = md5(uniqid(rand(), true)) . ".jpg";
 
     //Resize with intervention/image
-    if ($_FILES['image']['tmp_name']) {
-        $image = Image::make($_FILES['image']['tmp_name'])->fit(800, 600);
+    if ($_FILES['propierty']['tmp_name']['image']) {
+        $image = Image::make($_FILES['propierty']['tmp_name']['image'])->fit(800, 600);
         $propierty->setImage($imageName);
     }
 
