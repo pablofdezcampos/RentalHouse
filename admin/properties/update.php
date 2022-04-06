@@ -3,6 +3,7 @@
 //Check auth user
 
 use App\Propierty;
+use App\Seller;
 use Intervention\Image\ImageManagerStatic as Image;
 
 require '../../includes/app.php';
@@ -20,9 +21,8 @@ if (!$id) {
 //Get data values 
 $propierty = Propierty::findById($id);
 
-//Consultation to get the sellers
-$consultation = "SELECT * FROM seller";
-$result = mysqli_query($db, $consultation);
+//Get sellers
+$sellers = Seller::all();
 
 //Array with errors message
 $errors = Propierty::getErrors();

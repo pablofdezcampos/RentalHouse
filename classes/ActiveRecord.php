@@ -83,7 +83,7 @@ class ActiveRecord
     public function attributes()
     {
         $attributes = [];
-        foreach (self::$columnsDB as $column) {
+        foreach (static::$columnsDB as $column) {
             if ($column === 'id') continue;
             $attributes[$column] = $this->$column;
         }
@@ -127,44 +127,13 @@ class ActiveRecord
     //Validation
     public static function getErrors()
     {
-        return self::$errors;
+        return static::$errors;
     }
 
     public function validation()
     {
-        if (!$this->title) {
-            self::$errors[] = 'You must add a title';
-        }
-
-        if (!$this->price) {
-            self::$errors[] = 'The price is required';
-        }
-
-        if (!$this->image) {
-            self::$errors[] = 'The image is required';
-        }
-
-        if (strlen($this->description) < 5) {
-            self::$errors[] = 'You have to add a description';
-        }
-
-        if (!$this->rooms) {
-            self::$errors[] = 'Rooms are required';
-        }
-
-        if (!$this->wc) {
-            self::$errors[] = 'Bathrooms are required';
-        }
-
-        if (!$this->parking) {
-            self::$errors[] = 'The parking is required';
-        }
-
-        if (!$this->sellerId) {
-            self::$errors[] = 'Choose a seller';
-        }
-
-        return self::$errors;
+        static::$errors = [];
+        return static::$errors;
     }
 
     //Search by id
@@ -192,7 +161,7 @@ class ActiveRecord
         //Iterate
         $array = [];
         while ($register = $result->fetch_assoc()) {
-            $array[] = self::createObject($register);
+            $array[] = static::createObject($register);
         }
 
         //Free Up memory
