@@ -69,7 +69,7 @@ addTemplate('header');
     <?php endforeach; ?>
 
     <!-- enctype allow to put external files -->
-    <form class="form" method="POST" enctype="multipart/form-data">
+    <form class="form" method="POST" enctype="multipart/form-data" action="/admin/seller/update.php">
         <?php include '../../includes/templates/form_propierties.php' ?>
         <input type="submit" value="Update Property" class="button-green">
     </form>

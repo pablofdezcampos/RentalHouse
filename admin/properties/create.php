@@ -52,7 +52,7 @@ addTemplate('header');
 ?>
 
 <main class="container section">
-    <h1>Create</h1>
+    <h1>Create New Propierty</h1>
     <a href="/admin" class="button-yellow"> Go back </a>
 
     <?php foreach ($errors as $error) : ?>

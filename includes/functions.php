@@ -32,3 +32,11 @@ function sanitization($html): string
     $s = htmlspecialchars($html);
     return $s;
 }
+
+//Validate content 
+function validateTypeContent($type)
+{
+    $types = ['seller', 'propierty'];
+
+    return in_array($type, $types);
+}

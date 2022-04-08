@@ -20,8 +20,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $id = filter_var($id, FILTER_VALIDATE_INT);
 
     if ($id) {
-        $propierty = Propierty::findById($id);
-        $propierty->delete();
+
+        $type = $_POST['type'];
+
+        if (validateTypeContent($type)) {
+
+            if ($type === 'seller') {
+                $seller = Seller::findById($id);
+                $seller->delete();
+            } else if ($type === 'propierty') {
+                $propierty = Propierty::findById($id);
+                $propierty->delete();
+            }
+        }
     }
 }
 
@@ -38,7 +49,8 @@ addTemplate('header');
     <?php elseif (intval($result) === 3) : ?>
         <p class="alert success">Correctly Advert Elimination</p>
     <?php endif ?>
-    <a href="/admin/properties/create.php" class="button-green-inline">Create</a>
+    <a href="/admin/properties/create.php" class="button-green-inline">Create New Property</a>
+    <a href="/admin/seller/create.php" class="button-green-inline">Create New Seller</a>
 
     <h2>Propierties</h2>
     <table class="propierties">
@@ -64,10 +76,11 @@ addTemplate('header');
                         <form method="POST">
                             <!-- Input not visible -->
                             <input type="hidden" name="id" value="<?php echo $property->id; ?>">
+                            <input type="hidden" name="type" value="propierty">
 
                             <input type="submit" class="w-100 button-red-block" value="Delete">
                         </form>
-                        <a href="../admin/sellers/update.php?id=<?php echo $property->id ?>" class="button-yellow-block">Update</a>
+                        <a href="../admin/properties/update.php?id=<?php echo $property->id ?>" class="button-yellow-block">Update</a>
                     </td>
                 </tr>
             <?php endforeach; ?>
@@ -98,10 +111,11 @@ addTemplate('header');
                         <form method="POST">
                             <!-- Input not visible -->
                             <input type="hidden" name="id" value="<?php echo $seller->id; ?>">
+                            <input type="hidden" name="type" value="seller">
 
                             <input type="submit" class="w-100 button-red-block" value="Delete">
                         </form>
-                        <a href="../admin/properties/update.php?id=<?php echo $seller->id ?>" class="button-yellow-block">Update</a>
+                        <a href="../admin/seller/update.php?id=<?php echo $seller->id ?>" class="button-yellow-block">Update</a>
                     </td>
                 </tr>
             <?php endforeach; ?>
