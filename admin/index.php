@@ -41,14 +41,14 @@ addTemplate('header');
 
 <main class="container section">
     <h1>Admin</h1>
-    <!-- intval to convert to int -->
-    <?php if (intval($result) === 1) : ?>
-        <p class="alert success">Correctly Creation</p>
-    <?php elseif (intval($result) === 2) : ?>
-        <p class="alert success">Correctly Update</p>
-    <?php elseif (intval($result) === 3) : ?>
-        <p class="alert success">Correctly Elimination</p>
-    <?php endif ?>
+
+    <?php
+    $messaje = showNotification(intval($result));
+    if ($messaje) { ?>
+        <p class="alert success"><?php echo sanitization($messaje) ?> </p>
+    <?php }
+    ?>
+
     <a href="/admin/properties/create.php" class="button-green-inline">Create New Property</a>
     <a href="/admin/seller/create.php" class="button-green-inline">Create New Seller</a>
 

@@ -40,3 +40,25 @@ function validateTypeContent($type)
 
     return in_array($type, $types);
 }
+
+function showNotification($code)
+{
+    $messaje = '';
+
+    switch ($code) {
+        case 1:
+            $messaje = 'Correctly Creation';
+            break;
+        case 2:
+            $messaje = 'Correctly Update';
+            break;
+        case 3:
+            $messaje = 'Correctly Elimination';
+            break;
+        default:
+            $messaje = false;
+            break;
+
+            return $messaje;
+    }
+}
