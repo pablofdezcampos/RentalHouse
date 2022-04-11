@@ -5,11 +5,29 @@ use App\Seller;
 
 isAuth();
 
-$seller = new Seller();
+//Validate valid id
+$id = $_GET['id'];
+$id = filter_var($id, FILTER_VALIDATE_INT);
+
+if (!$id) {
+    header('Location: /admin');
+}
+
+//Get the array of seller
+$seller = Seller::findById($id);
 
 $errors = Seller::getErrors();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $args = $_POST['seller'];
+
+    $seller->syncUp($args);
+
+    $errors = $seller->validation();
+
+    if (empty($errors)) {
+        $seller->save();
+    }
 }
 
 addTemplate('header');

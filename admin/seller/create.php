@@ -10,6 +10,15 @@ $seller = new Seller();
 $errors = Seller::getErrors();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    //Create new instance
+    $seller = new Seller($_POST['seller']);
+
+    //Validate
+    $errors = $seller->validation();
+
+    if (empty($errors)) {
+        $seller->create();
+    }
 }
 
 addTemplate('header');
